@@ -1,0 +1,89 @@
+{
+  "name": "snemish/three.js",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "Shoes",
+  "branch": "",
+  "style": {
+    "name": "Williamsburg",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/LightBannerHeader",
+      "article": "article/ReaderArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "Montserrat, sans-serif",
+    "heading": {
+      "fontWeight": 600,
+      "letterSpacing": "0.1em"
+    },
+    "colors": {
+      "text": "#346",
+      "background": "#fff",
+      "primary": "#0099e0",
+      "secondary": "#ab61ff",
+      "highlight": "#f7b",
+      "muted": "#fffab3",
+      "border": "#ccd"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://threejs.org/",
+          "text": "Home"
+        },
+        {
+          "href": "https://github.com/snemish/three.js",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/three",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "three.js",
+      "subhead": "JavaScript 3D library.",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "three.js: JavaScript 3D library.",
+          "url": "https://threejs.org/"
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "snemish",
+          "repo": "three.js"
+        }
+      ],
+      "text": "v0.87.1"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "\n<p><a href=\"https://gitter.im/mrdoob/three.js\"><img src=\"https://badges.gitter.im/mrdoob/three.js.svg\"></a>\n<a href=\"https://www.npmjs.com/package/three\"><img src=\"https://img.shields.io/npm/v/three.svg\"></a>\n<a href=\"./LICENSE\"><img src=\"https://img.shields.io/npm/l/three.svg\"></a>\n<a href=\"https://david-dm.org/mrdoob/three.js\"><img src=\"https://img.shields.io/david/mrdoob/three.js.svg\"></a>\n<a href=\"https://david-dm.org/mrdoob/three.js#info=devDependencies\"><img src=\"https://img.shields.io/david/dev/mrdoob/three.js.svg\"></a></p>\n<h4>JavaScript 3D library</h4>\n<p>The aim of the project is to create an easy to use, lightweight, 3D library. The library provides &lt;canvas&gt;, &lt;svg&gt;, CSS3D and WebGL renderers.</p>\n<p><a href=\"http://threejs.org/examples/\">Examples</a> &#x2014;\n<a href=\"http://threejs.org/docs/\">Documentation</a> &#x2014;\n<a href=\"https://github.com/mrdoob/three.js/wiki\">Wiki</a> &#x2014;\n<a href=\"https://github.com/mrdoob/three.js/wiki/Migration-Guide\">Migrating</a> &#x2014;\n<a href=\"http://stackoverflow.com/questions/tagged/three.js\">Help</a></p>\n<h3>Usage</h3>\n<p>Download the <a href=\"http://threejs.org/build/three.min.js\">minified library</a> and include it in your HTML, or install and import it as a <a href=\"http://threejs.org/docs/#manual/introduction/Import-via-modules\">module</a>,\nAlternatively see <a href=\"https://github.com/mrdoob/three.js/wiki/Build-instructions\">how to build the library yourself</a>.</p>\n<pre><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">script</span> <span class=\"hljs-attr\">src</span>=<span class=\"hljs-string\">&quot;js/three.min.js&quot;</span>&gt;</span><span class=\"undefined\"></span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">script</span>&gt;</span></pre><p>This code creates a scene, a camera, and a geometric cube, and it adds the cube to the scene. It then creates a <code>WebGL</code> renderer for the scene and camera, and it adds that viewport to the document.body element. Finally, it animates the cube within the scene for the camera.</p>\n<pre><span class=\"hljs-keyword\">var</span> scene, camera, renderer;\n<span class=\"hljs-keyword\">var</span> geometry, material, mesh;\n\ninit();\nanimate();\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">init</span>(<span class=\"hljs-params\"></span>) </span>{\n\n    scene = <span class=\"hljs-keyword\">new</span> THREE.Scene();\n\n    camera = <span class=\"hljs-keyword\">new</span> THREE.PerspectiveCamera( <span class=\"hljs-number\">75</span>, <span class=\"hljs-built_in\">window</span>.innerWidth / <span class=\"hljs-built_in\">window</span>.innerHeight, <span class=\"hljs-number\">1</span>, <span class=\"hljs-number\">10000</span> );\n    camera.position.z = <span class=\"hljs-number\">1000</span>;\n\n    geometry = <span class=\"hljs-keyword\">new</span> THREE.BoxGeometry( <span class=\"hljs-number\">200</span>, <span class=\"hljs-number\">200</span>, <span class=\"hljs-number\">200</span> );\n    material = <span class=\"hljs-keyword\">new</span> THREE.MeshBasicMaterial( { <span class=\"hljs-attr\">color</span>: <span class=\"hljs-number\">0xff0000</span>, <span class=\"hljs-attr\">wireframe</span>: <span class=\"hljs-literal\">true</span> } );\n\n    mesh = <span class=\"hljs-keyword\">new</span> THREE.Mesh( geometry, material );\n    scene.add( mesh );\n\n    renderer = <span class=\"hljs-keyword\">new</span> THREE.WebGLRenderer();\n    renderer.setSize( <span class=\"hljs-built_in\">window</span>.innerWidth, <span class=\"hljs-built_in\">window</span>.innerHeight );\n\n    <span class=\"hljs-built_in\">document</span>.body.appendChild( renderer.domElement );\n\n}\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">animate</span>(<span class=\"hljs-params\"></span>) </span>{\n\n    requestAnimationFrame( animate );\n\n    mesh.rotation.x += <span class=\"hljs-number\">0.01</span>;\n    mesh.rotation.y += <span class=\"hljs-number\">0.02</span>;\n\n    renderer.render( scene, camera );\n\n}</pre><p>If everything went well you should see <a href=\"https://jsfiddle.net/hfj7gm6t/\">this</a>.</p>\n<h3>Change log</h3>\n<p><a href=\"https://github.com/mrdoob/three.js/releases\">releases</a></p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/snemish/three.js",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/snemish",
+          "text": "snemish"
+        }
+      ]
+    }
+  ]
+}
